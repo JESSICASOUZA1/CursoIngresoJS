@@ -5,7 +5,7 @@ function mostrar()
 {
 	var nombreIngresado;
 	nombreIngresado=txtIdNombre.value;
-	alert(nombre);
+	alert(nombreIngresado);
 }
 
 
