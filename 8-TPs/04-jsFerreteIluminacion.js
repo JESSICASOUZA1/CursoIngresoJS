@@ -10,13 +10,60 @@ E.	Si el importe final con descuento suma más de $120  se debe sumar un 10% de 
  */
 function CalcularPrecio () 
 {
- 	let Marca;;
- 	let Precio;
- 	let descuento;
+    var Cant;
+    var Marc;
+    var Desc;
+    var Prec;
+    var Total;
+    var TotalIVA;
+    var IIBB;
 
-
- 	Precio = parseInt(document.getElementById("txtIdprecio").value);
- 	Descuento = parseInt(document.getElementById("txtIdprecioDescuento").value);
- 	
- 	
+    Cant = parseInt(document.getElementById("txtIdCantidad").value);
+    Marc = document.getElementById("Marca").value;
+    Prec = 35;
+    Total = Prec*Cant;
+    switch(Cant){
+        case 5:
+            if (Marc == "ArgentinaLuz"){
+                Desc = Total - ((Total)*0.4);
+            }
+            else {
+                Desc = Total - ((Total)*0.3);
+            }
+        break;
+        case 4:
+            if (Marc == "ArgentinaLuz" || Marc == "FelipeLamparas"){
+                Desc = Total - ((Total)*0.25);        
+            }
+            else {
+                Desc = Total - ((Total)*0.2);      
+            }
+        break;
+        case 3:
+            if (Marc == "ArgentinaLuz"){
+                Desc = Total - ((Total)*0.15);                  
+            }
+            else if (Marc == "FelipeLamparas"){
+                Desc = Total - ((Total)*0.1);                             
+            }
+            else {
+                Desc = Total - ((Total)*0.05);                     
+            }
+        break;
+        case 2:
+        case 1:
+            Desc = Total;
+        break;              
+        default:
+            Desc = Total - ((Total)*0.5);
+        break;     
+    }
+    if (Desc > 120){
+        TotalIVA = Desc + (Desc*0.1);
+        IIBB = Desc*0.1;
+        document.getElementById("txtIdprecioDescuento").value = "$"+TotalIVA+": Usted pago $"+IIBB+" de IIBB.";
+    }
+    else {
+        document.getElementById("txtIdprecioDescuento").value = "$"+Desc;
+    }   
 }
