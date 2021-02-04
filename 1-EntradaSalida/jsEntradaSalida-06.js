@@ -4,15 +4,24 @@ transformarlos a enteros (parseInt) y Sumarlos.
 mostrar el resulto por medio de "ALERT"*/
 function sumar()
 {
-	var Num1;
-	var Num2;
+	var numeroUno;
+	var numeroDos;
 	var resultado;
+	var mensaje;
 
-    Num1 = parseInt(document.getElementById("txtIdNumeroUno").value);
-	Num2 = parseInt(document.getElementById("txtIdNumeroDos").value);
-	resultado = Num1 + Num2;
+	numeroUno=document.getElementById('txtIdNumeroUno').value;
+	numeroUno=parseInt(numeroUno);
+	
+	numeroDos=document.getElementById('txtIdNumeroDos').value;
+	numeroDos=parseInt(numeroDos);
 
-	alert("La suma es " +resultado); //blabnla
+	resultado=numeroUno+numeroDos;
+	
+	alert("La suma es: " + resultado);
+	
+	//transformar texto em numero usar: parseInt
+	//quando aparece Nan pq nao é um numero bla bla
+
 }
 
 	
