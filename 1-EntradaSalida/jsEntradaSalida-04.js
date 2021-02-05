@@ -6,10 +6,12 @@ function mostrar()
 {
     //prompt entrada de datos, nani
 
-	var Message = prompt("Ingrese su nombre","");
+    var Message;
+    Message = prompt("Ingrese su nombre");
     document.getElementById("txtIdNombre").value = Message;
-    
-}
+
+}  // quando é pra mostrar na caixa se coloca no document.getElementById("txtIdNombre").value = Message;
+
 
 /*
 salida  

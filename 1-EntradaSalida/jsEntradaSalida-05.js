@@ -5,9 +5,13 @@ function mostrar()
 {	
 	var Nombre;
 	var Edad;
-	Nombre = document.getElementById("txtIdNombre").value
-    Edad = document.getElementById("txtIdEdad").value
-	alert("Mi nombre es "+Nombre+" y tengo "+Edad+" años");
+	var Apellido;
+
+	Nombre = document.getElementById("txtIdNombre").value;
+	Edad = document.getElementById("txtIdEdad").value;
+	Apellido = prompt("Ingrese su Apellido");
+	
+	alert("Mi nombre es "+Nombre+" "+Apellido+ " y tengo "+Edad);
 
 
 	/*
