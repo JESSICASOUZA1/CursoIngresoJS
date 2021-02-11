@@ -1,26 +1,25 @@
 function mostrar()
 {
+	// da silva de souza,jessica
 	//Genero el número RANDOM entre 1 y 10 
 
-	let vMaximo = 10;
-	let vMinimo = 1;
-    let vNum;
-	vNum = Math.round( Math.random() * (vMaximo - vMinimo) + vMinimo);
+	var nota;
 
-	if (vNum == 9 || vNum == 10) 
+	nota = Math.floor(Math.random() * 10) + 1;  // returns a random integer from 1 to 10
+
+	if (nota == 9 || nota == 10) 
 
 	{
-		alert (vNum + " Excelente");
-
+		alert (nota + " Excelente");
 	}
-	else if (vNum >4 && vNum <= 8) 
+	else if (nota>4 && nota <8) 
 
 	{
-		alert (vNum +  " APROBÓ");
+		alert (nota +  " APROBÓ");
 	} 
 
 	else 
 	{
-		alert(vNum + " Vamos, la proxima se puede");
+		alert(nota + " Vamos, la proxima se puede");
 	}
 }//FIN DE LA FUNCIÓN
