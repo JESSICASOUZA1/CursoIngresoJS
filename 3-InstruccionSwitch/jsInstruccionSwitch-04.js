@@ -1,24 +1,25 @@
 function mostrar()
 {
+	// da silva de souza, jessica
 	//tomo el mes
-	var mes;
-	mes = document.getElementById("txtIdMes").value;
+	var Mes;
+	Mes = document.getElementById("txtIdMes").value;
 
-	switch (mes)
+	switch(Mes)
 	{
+		case "Febrero":
+			alert("Tiene 28 dias");
+			break;
+		
 		case "Abril":
 		case "Junio":
 		case "Septiembre":
 		case "Noviembre":
-				alert("Ese Ese mês tiene 30 dias");
-		break;
+			alert("Tiene 30 dias");
+			break;
 		
-		case "Febrero":
-		        alert("Ese mês tiene 28 dias");
-		break;
-
 		default:
-		        alert("Ese mês tiene 31 dias");
-		break;		
+			alert("Tiene 31 dias");
+			break;
 	}
 }//FIN DE LA FUNCIÓN

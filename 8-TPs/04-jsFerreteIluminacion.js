@@ -12,7 +12,8 @@ function CalcularPrecio ()
    var Marca;
    var precio;
    var precioDescuento;
-   var PrecioSinDescuento;
+   var precioSinDescuento;
+   var Porcentage;
 
    precio = 35;
 
@@ -22,20 +23,23 @@ function CalcularPrecio ()
    Marca = document.getElementById("Marca").value;
    precioDescuento = document.getElementById("txtIdprecioDescuento").value;
 
-   PrecioSinDescuento = CantLamparas*Precio;
+   precioSinDescuento = Cantidad*precio;
 
 
    if(Cantidad>5)
    {
-    PrecioDescuento = PrecioSinDescuento*0.5;
+    precioDescuento = precioSinDescuento*0.5;
    }
-      else if(Cantidad==5 && marca == "ArgentinaLuz")
-        {
-         precioDescuento = PrecioSinDescuento*0.4
-        }
+   else if(Cantidad==5 && Marca == "ArgentinaLuz")
+   {
+    Porcentage = precioSinDescuento*0.4;
+    precioDescuento = precioSinDescuento - Porcentage;
+   }
    
 
-        document.getElementById('txtIdprecioDescuento').value = PrecioDescuento;
+   
+   
+   document.getElementById('txtIdprecioDescuento').value = PrecioDescuento;
 
 
 

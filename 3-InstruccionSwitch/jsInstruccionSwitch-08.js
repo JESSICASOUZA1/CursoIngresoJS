@@ -1,27 +1,25 @@
 function mostrar()
 {
-	let destino;
+	//da silva de souza, jessica 
+	var Destino;
+	Destino = document.getElementById("txtIdDestino").value;
 
-	destino = document.getElementById("txtIdDestino").value;
-
-	switch (destino)
-
-{
-	case "Bariloche":
-	alert("Bariloche hace frio");
-	break;
-
-	case "Cataratas":
-	alert("Cataratas hace calor");
-	break;
-
-	case "Ushuaia":
-	alert("Ushuaia hace frio");
-	break;
-
-	case "Mar del plata":
-	alert("Mar del Plata hace calor");
-	break;
-}
-
+	switch(Destino)
+	{
+		case "Bariloche":
+			alert("Hace Frio");
+			break;
+		
+		case "Cataratas":
+			alert("Hace Calor");
+			break;
+		
+		case "Mar del plata":
+			alert("Hace Calor");
+			break;
+		
+        case "Ushuaia":
+			alert("Hace Frio");
+			break;
+	}
 }//FIN DE LA FUNCIÓN
