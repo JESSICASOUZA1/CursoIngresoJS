@@ -1,40 +1,23 @@
 function mostrar()
 {
+	//da silva de souza, jessica 
+	var Destino;
 	var Estacion;
 	var Precio;
-	var Destino;
-	
-	Precio = 15.000;
 
-	Estacion = document.getElementById("txtIdEstacion").value;
+    Precio = 15.000;
+
 	Destino = document.getElementById("txtIdDestino").value;
-    
-    DestinoBariloche = Precio*0.20;
-
+	Estacion = document.getElementById("txtIdEstacion").value;
 
     switch(Destino)
 	{
-		case "Bariloche":
-			alert("DestinoBariloche");
-			break;
+        case "Bariloche":
+			if(se)
+			{
+
+			}
 	}
-
-
-
-
-    Precio = 15.000*0.20;
-
-
-
+	
+	
 }//FIN DE LA FUNCIÓN
-
-
-       precio + precio*porcentaje/100
-	   
-
-	/*importe con un aumento del 10 %
-	   Resultado1 = Sueldo*0.10;
-    Resultado2 = Sueldo + Resultado1;
-    
-    Resultado = document.getElementById('txtIdResultado').value = Resultado2;
-	*/
