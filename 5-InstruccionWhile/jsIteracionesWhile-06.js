@@ -34,3 +34,18 @@ function mostrar()
 */
 
 }//FIN DE LA FUNCIÓN
+
+/* isNaN -> permite detectar se estamos ingresando um numero ou qualquer outra coisa
+   NaN significa not a number
+
+    while(isNaN(numeroIngresado)==true
+   {
+    numeroingresado = prompt("Error, ingrese un numero");
+	numeroIngresado = parseInt(numeroIngresado);
+
+   }
+
+*/
+//usar isNaN para verificar se é um numero
+//Esta função retorna verdadeiro se o valor for igual a NaN. Caso contrário, ele retorna falso.
+

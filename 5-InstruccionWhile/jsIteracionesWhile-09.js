@@ -4,18 +4,44 @@ mostrar el número máximo y el número mínimo ingresado.*/
 function mostrar()
 {	// declarar variables
 	var banderaDelPrimero;
-	var numeroIngresado;
-	var numeroMaximo;
-	var numeroMinimo;
+	var edadIngresada;
+	var nombreViejo;
+	var nombreJoven;
+	var numeroMaximo = 0;
+	var numeroMinimo = 0;
 	var respuesta;
+
 	//iniciar variables
+    
 	banderaDelPrimero="es el primero";
-	respuesta='si';
+	respuesta="si";
+
 	while(respuesta=="si")
 	{
+		edadIngresada = prompt("Ingrese un numero");
+		edadIngresada = parseInt(edadIngresada);
 		
-		respuesta=prompt("desea continuar?");
+
+		if(edadIngresada>numeroMaximo || banderaDelPrimero == "es el primero") //bandera solo sera vdd 1 vez
+		{
+			numeroMaximo = edadIngresada;
+			banderaDelPrimero = "no";
+		}
+		if(edadIngresada<numeroMinimo || banderaDelPrimero == "es el primero")
+		{
+			numeroMinimo = edadIngresada;
+			banderaDelPrimero = "no";
+		}
+
+		respuesta = prompt("Desea continuar?");
 	}
-	txtIdMaximo.value=numeroMaximo;
-	txtIdMinimmo.value=numeroMinimo;
+
+	document.getElementById("txtIdMaximo").value=numeroMaximo;
+	document.getElementById("txtIdMinimo").value=numeroMinimo;
+
+
 }//FIN DE LA FUNCIÓN
+
+/* bandera é quando nao surge outra forma de indicar algo.
+
+*/

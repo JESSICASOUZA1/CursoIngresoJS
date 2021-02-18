@@ -1,46 +1,96 @@
-/*
-Al presionar el botón pedir  números  hasta que el usuario quiera,
-sumar los que son positivos y multiplicar los negativos.*/
+//A- edad y nombre , informar el nombre de la persona mas vieja y la mas joven
 function mostrar()
 {
-	var contador;
-	var respuesta;
-	var sumaPositivos;
-	var multiplicacionNegativos;
-	
-	contador=0;
-	sumaPositivos=0;
-	multiplicacionNegativos=1;
+    var edadIngresada;
+    var nombreViejo;
+	var nombreJoven;
+    var contador;
+    var numeroMax;
+	var numeroMin;
+
+    contador= 0;
 	respuesta='si';
 
-
+	edadIngresada = prompt("Ingrese una edad");
+	edadIngresada = parseInt(edadIngresada);
+    
 	while(respuesta == "si")
 		{
-			numeroIngresado = prompt("Ingrese un numero");
-			numeroIngresado = parseInt(numeroIngresado);
-		    respuesta = prompt("Desea continuar?");
-
-			if(numeroIngresado>0)
+			if(edadIngresada>numeroMaximo || banderaDelPrimero == "es el primero") //bandera solo sera vdd 1 vez
             {
-				sumaPositivos = sumaPositivos + numeroIngresado;
+               numeroMaximo = edadIngresada;
+			   banderaDelPrimero = "si";
+			}
+            contadoredadIngresada = contadoredadIngresada + 1; //contador++
+		
+		}
+		
+
+	nombre = prompt("Ingrese un nombre");
+	nombre = parseInt(nombre);
+	respuesta = prompt("Desea continuar?");
+
+	while(respuesta == "si")
+	{
+
+	}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    /*   
+	while(respuesta == "si") 
+        {
+		nombre = prompt("Ingrese un nombre");
+		nombre = parseInt(nombre);
+		respuesta = prompt("Desea continuar?");
+        
+
+		if(edad>0)
+            {
+
 			}
             else
 			{
-				multiplicacionNegativos = multiplicacionNegativos * numeroIngresado;
 			}
-
-
-		//	acumulador = acumulador + numeroIngresado;
-			contador = contador + 1; //contador++
-		
-			console.log(contador);
-		}
 			
-
-		   document.getElementById("txtIdSuma").value = sumaPositivos;
-		   document.getElementById("txtIdProducto").value = multiplicacionNegativos;
+			contadorEdad = contadorEdad + 1; //contador++
 		
+			console.log(contadorEdad);
+		}
+		
+		document.getElementById("txtIdSuma").value = contadorEdad;
+		document.getElementById("txtIdProducto").value = contadorNombre;
+	
+    
+    		//	acumulador = acumulador + edad;
+*/
 
-
-
-}//FIN DE LA FUNCIÓN
+}
