@@ -2,6 +2,8 @@
 censos nos pide realizar una carga de datos validada e ingresada por ventanas emergentes 
 solamente (para evitar hacking y cargas maliciosas) y luego asignarla a cuadros de textos. 
 
+da silva de souza, jessica
+
 12.   Los datos requeridos son los siguientes:
 A.	Edad, entre 18 y 90 años inclusive.
 B.	Sexo, “M” para masculino y “F” para femenino
@@ -35,10 +37,10 @@ function ComenzarIngreso ()
 	    edad = parseInt(edad);
 	}
 
-	sexo = prompt("ingrese F ó M .");
-    while(!(sexo == "F" || sexo == "M" || sexo == "f" || sexo == "m"))
+	sexo = prompt("ingrese F ó M (F para femenino y M para masculino");
+    while(!(sexo == "F" || sexo == "M"))
     {
-		sexo = prompt("ingrese f ó m .");
+		sexo = prompt("ingrese F ó M (F para femenino y M para masculino");
 	}
 
 	estadoCivil = prompt("ingrese un numero entre 1 y 4 (1-para soltero, 2-para casados, 3-para divorciados y 4-para viudos")

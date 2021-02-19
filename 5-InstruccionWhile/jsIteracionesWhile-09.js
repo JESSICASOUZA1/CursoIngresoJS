@@ -3,34 +3,34 @@ Al presionar el botón pedir  números  hasta que el usuario quiera,
 mostrar el número máximo y el número mínimo ingresado.*/
 function mostrar()
 {	// declarar variables
-	var banderaDelPrimero;
-	var edadIngresada;
-	var nombreViejo;
-	var nombreJoven;
+	var banderaDelPrimeroMax;
+	var banderaDelPrimeroMin;
+	var numeroIngresado;
 	var numeroMaximo = 0;
-	var numeroMinimo = 0;
+	var numeroMinimo;
 	var respuesta;
 
 	//iniciar variables
     
-	banderaDelPrimero="es el primero";
+	banderaDelPrimeroMax="es el primero";
+	banderaDelPrimeroMin="es el primero";
 	respuesta="si";
 
 	while(respuesta=="si")
 	{
-		edadIngresada = prompt("Ingrese un numero");
-		edadIngresada = parseInt(edadIngresada);
+		numeroIngresado = prompt("Ingrese un numero");
+		numeroIngresado = parseInt(numeroIngresado);
 		
 
-		if(edadIngresada>numeroMaximo || banderaDelPrimero == "es el primero") //bandera solo sera vdd 1 vez
+		if(numeroIngresado>numeroMaximo || banderaDelPrimeroMax == "es el primero") //bandera solo sera vdd 1 vez
 		{
-			numeroMaximo = edadIngresada;
-			banderaDelPrimero = "no";
+			numeroMaximo = numeroIngresado;
+			banderaDelPrimeroMax = "no";
 		}
-		if(edadIngresada<numeroMinimo || banderaDelPrimero == "es el primero")
+		if(numeroIngresado<numeroMinimo || banderaDelPrimeroMin == "es el primero")
 		{
-			numeroMinimo = edadIngresada;
-			banderaDelPrimero = "no";
+			numeroMinimo = numeroIngresado;
+			banderaDelPrimeroMin = "no";
 		}
 
 		respuesta = prompt("Desea continuar?");

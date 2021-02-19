@@ -1,96 +1,60 @@
-//A- edad y nombre , informar el nombre de la persona mas vieja y la mas joven
+//A- ingresar edad y nombre (hasta que el user quiera) , informar el nombre de la persona mas vieja y 
+//la mas joven.
+// da silva de souza, jessica
+
 function mostrar()
 {
-    var edadIngresada;
-    var nombreViejo;
-	var nombreJoven;
-    var contador;
-    var numeroMax;
-	var numeroMin;
+   var edadIngresada;
+   var edadJoven;
+   var edadViejo;
 
-    contador= 0;
-	respuesta='si';
+   var nombre;
+   var nombreViejo;
+   var nombreJoven;
+   
+   var banderaJoven;
+   var banderaViejo;
+   var respuesta;
 
-	edadIngresada = prompt("Ingrese una edad");
-	edadIngresada = parseInt(edadIngresada);
-    
-	while(respuesta == "si")
-		{
-			if(edadIngresada>numeroMaximo || banderaDelPrimero == "es el primero") //bandera solo sera vdd 1 vez
-            {
-               numeroMaximo = edadIngresada;
-			   banderaDelPrimero = "si";
-			}
-            contadoredadIngresada = contadoredadIngresada + 1; //contador++
-		
-		}
-		
+   banderaJoven = 7;
+   banderaViejo = 7;
 
-	nombre = prompt("Ingrese un nombre");
-	nombre = parseInt(nombre);
-	respuesta = prompt("Desea continuar?");
+   respuesta = "si";
 
-	while(respuesta == "si")
+
+    while(respuesta == "si")
 	{
+		edadIngresada = parseInt(prompt("ingrese una edad"));
 
-	}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    /*   
-	while(respuesta == "si") 
-        {
-		nombre = prompt("Ingrese un nombre");
-		nombre = parseInt(nombre);
-		respuesta = prompt("Desea continuar?");
-        
-
-		if(edad>0)
-            {
-
-			}
-            else
-			{
-			}
-			
-			contadorEdad = contadorEdad + 1; //contador++
-		
-			console.log(contadorEdad);
+		while (edadIngresada<1 || edadIngresada>125)
+		{
+			edadIngresada = parseInt(prompt("Error, ingrese una edad valida"));
 		}
-		
-		document.getElementById("txtIdSuma").value = contadorEdad;
-		document.getElementById("txtIdProducto").value = contadorNombre;
-	
+
+		nombre = prompt("Ingrese un nombre");
+
+		if(edadIngresada<edadJoven || banderaJoven == 7)
+		{
+            edadJoven = edadIngresada;
+			nombreJoven = nombre;
+			
+			banderaJoven = 1;
+		}
+		if(edadIngresada>edadViejo || banderaViejo == 7)
+		{
+			edadViejo = edadIngresada;
+			nombreViejo = nombre;
+			banderaViejo = 1;
+		}
+
+		respuesta = prompt("Desea continuar?");
+	}
     
-    		//	acumulador = acumulador + edad;
-*/
+	document.getElementById("txtIdSuma").value = nombreJoven;
+	document.getElementById("txtIdProducto").value = nombreViejo;
 
 }
+//prof disse pra criar so com uma
+
+//si en edadJoven quieres guardar la ultima edad ingresada que debemos guardar
+//en nombreJoven
