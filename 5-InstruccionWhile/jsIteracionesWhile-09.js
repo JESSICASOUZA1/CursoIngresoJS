@@ -31,11 +31,13 @@ function mostrar()
 		{
 			numeroMinimo = numeroIngresado;
 			banderaDelPrimeroMin = "no";
+
 		}
 
 		respuesta = prompt("Desea continuar?");
 	}
 
+	
 	document.getElementById("txtIdMaximo").value=numeroMaximo;
 	document.getElementById("txtIdMinimo").value=numeroMinimo;
 
