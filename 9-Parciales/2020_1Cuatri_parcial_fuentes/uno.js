@@ -9,8 +9,8 @@ la cantidad de unidades (no puede ser 0 o negativo y no debe superar las 1000 un
 la Marca y el fabricante.
 Se debe Informar al usuario lo siguiente:
 a) Del más barato de los alcohol, la cantidad de unidades y el fabricante
-b) Del tipo con mas unidades, el promedio por compra
-c) Cuántas unidades de jabones hay en total
+b) Del tipo con mas cant=unidades, el promedio por compra
+c) Cuántas cant=unidades de jabones hay en total
 */
 function mostrar()
 {

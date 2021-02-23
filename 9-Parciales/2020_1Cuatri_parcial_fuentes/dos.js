@@ -18,22 +18,30 @@ function mostrar()
 {
   //Inicio
    var tipo;
-   var precio = 0;
    var cantidad = 0;
-   var contador = 0;
+   var precio = 0;
+
+   var cantTotal = 0;
+   var precioTotal = 0;
+   var precioConDescuento = 0;
+   var descuento = 0;
+   var acPrecioAr = 0;
+   var acPrecioCal = 0;
+   var acPrecioCem = 0;
+
+
+   var acCantAr = 0;
+   var acCantCal = 0;
+   var acCantCem = 0;
+
+   var masCaro;
+   var masCant;
    var respuesta = "si";
 
-   var precioTotal;
-   var acumuladorAre = 0;
-   var acumuladorCal = 0;
-   var acumuladorCem = 0;
-   var contadorAre = 0;
-   var contadorCal =0;
-   var contadorCem = 0;
-
+   //Entrada de dados
    while(respuesta == "si")
-
    {
+
 	 tipo = prompt("Ingrese un tipo de producto (arena, cal o cemento");
    while (!(tipo == "arena"  || tipo == "cal" || tipo == "cemento"))
    {
@@ -52,100 +60,82 @@ function mostrar()
    precio = parseInt(prompt("Error, Ingrese precio valido"));
    }
 
-  }
    // Letra A
    switch(tipo) 
    {
       case "arena":
-         acumuladorAre = acumuladorAre + cantidad;
-         contadorAre++;
-       // so vai entrar se o tipo for alcohol
-       //Letra A
-         if() // quero verificar se precio é menor que precoMin
-         {                                      // funcao da bandeira é estabelecar o primeiro precio como precioMin.
-            cantidadMin = cantidad;
-            fabricanteMin = fabricante;
-            banderaMin = 1
-         }
+         acCantAr = acCantAr + cantidad;         //D) primera parte acumulando cantidad
+         acPrecioAr = acPrecioAr + precio;      //F) primera parte  acumulando precio
          break;
          
       case "cal":
-         acumuladorBarb = acumuladorBarb + cantidad;
-         contadorBarb++;
+         acCantCal = acCantCal + cantidad;      //D) primera parte
+         acPrecioCal = acPrecioCal + precio;   //F) primera parte
          break;
          
       case "cemento":
-         acumuladorJab = acumuladorJab + cantidad;
-         contadorJab++;
+         acCantCem = acCantCem + cantidad;       //D) primera parte
+         acPrecioCem = acPrecioCem + precio;    //F) primera parte
          break;
-   }
 
+   }
 
    respuesta = prompt("Desea continuar?");
 
-
 }  
 
+precioTotal = acPrecioAr + acPrecioCal + acPrecioCem; //letra A (El importe total a pagar) y B 
+cantTotal = acCantAr + acCantCal + acCantCem;        // letra D (Informar el tipo con mas cantidad)
 
-//Si compro más de 10 bolsas en total tenes 15% de descuento sobre el total a pagar.
-
-
-if(cantidadTotal == 10)
+//descuento
+if(cantTotal>30)
 {
-  cantidadTotal = cantidadTotal;
+   descuento = 0.25;
+   descuento = precioTotal*descuento;
+   precioConDescuento = precioTotal - descuento;   
+   document.write("El importe total bruto y sin descuento es: $" +precioTotal+ " y con descuento es: $"+precioConDescuento+"<br>");
+}
+else if(cantTotal>10)
+{
+   descuento = 0.15;
+   descuento = precioTotal*descuento;
+   precioConDescuento = precioTotal - descuento;   
+   document.write("El importe total bruto y sin descuento es: $" +precioTotal+ " y con descuento es: $"+precioConDescuento+"<br>");
+}
+else
+{ 
+   document.write("El importe total es: $" +precioTotal+"<br>");
 }
 
+//D) segunda parte
+if(acCantAr>acCantCal && acCantAr>acCantCem)
+{
+  masCant = "Arena";
+}
+else if(acCantCal>acCantAr && acCantCal>acCantCem)
+{
+   masCant = "Cal";
+}
+else
+{
+   masCant = "Cemento";
+}
 
+//F) segunda parte
+if(acPrecioAr>acPrecioCem && acPrecioAr>acPrecioCal)
+{
+ masCaro = "Arena";
+}
+else if(acPrecioCal>acPrecioAr && acPrecioCal>acPrecioCem)
+{
+   masCaro = "Cal";
+}
+else
+{
+   masCaro = "Cemento";
+}
 
+document.write("El tipo con mas cantidad es: "+masCant+"<br>"); //D
+document.write("El tipo mas caro es: "+masCaro+"<br>"); //F
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//contador++; //contar cada volta,nesse 5 voltas. ej. quantas 
-   /*
-   }
-
-   if(acumuladorAl>acumuladorBarb && acumuladorAl>acumuladorJab)
-   {
-     tipoComMaUnid = "alcohol";
-     acumuladorFinal = acumuladorAl;
-     contadorFinal = contadorAl;
-   }
-   else if(acumuladorBarb>acumuladorAl && acumuladorBarb>acumuladorJab)
-   {
-      tipoComMaUnid = "barbijo";
-      acumuladorFinal = acumuladorBarb;
-      contadorFinal = contadorBarb;
-   }
-   else
-   {
-      tipoComMaUnid = "jabon";
-      acumuladorFinal = acumuladorJab;
-      contadorFinal = contadorJab;
-   }
-
-   promedio = acumuladorFinal/contadorFinal;
-
-	 document.write("El alcohol más barato vale $"+precioMin+" y la cantidad minima es "+cantidadMin+" y el fabricante minimo es "+fabricanteMin+"<br>");
-   document.write("El tipo con mas unidades es "+tipoComMaUnid+ " el promedio por compra es "+promedio+"<br>");
-   document.write("La cantidad total de jabones es "+acumuladorJab+"<br>");
-
-*/
-
+}
