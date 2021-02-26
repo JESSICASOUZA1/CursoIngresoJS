@@ -1,4 +1,5 @@
 //al presionar el botón pedir un número. Informar si el numero es PRIMO o no.
+
 // usar esse for quando quiser achar numero primo
 function mostrar()
 {

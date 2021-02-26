@@ -1,45 +1,65 @@
 /*
 Al presionar el botón pedir  números  hasta que el usuario quiera,
-mostrar el número máximo y el número mínimo ingresado.*/
+mostrar el número máximo y el número mínimo ingresado.
+
+(el menor de los pares y el mayor de los negativos ...solo si hay)
+
+*/
 function mostrar()
 {	// declarar variables
-	var banderaDelPrimeroMax;
-	var banderaDelPrimeroMin;
-	var numeroIngresado;
-	var numeroMaximo = 0;
-	var numeroMinimo;
-	var respuesta;
+	var bandera = 0;
+	var numIngresado = 0;
+	var numMax = 0;
+	var numMin = 0;
+	var menorPar = 2;
+	var mayorNega = (-1);
 
-	//iniciar variables
-    
-	banderaDelPrimeroMax="es el primero";
-	banderaDelPrimeroMin="es el primero";
-	respuesta="si";
+	var respuesta;	
+
+    respuesta="si";
 
 	while(respuesta=="si")
 	{
-		numeroIngresado = prompt("Ingrese un numero");
-		numeroIngresado = parseInt(numeroIngresado);
+		numIngresado = prompt("Ingrese un numero");
+		numIngresado = parseInt(numIngresado);
 		
-
-		if(numeroIngresado>numeroMaximo || banderaDelPrimeroMax == "es el primero") //bandera solo sera vdd 1 vez
+		if(bandera == 0)
 		{
-			numeroMaximo = numeroIngresado;
-			banderaDelPrimeroMax = "no";
-		}
-		if(numeroIngresado<numeroMinimo || banderaDelPrimeroMin == "es el primero")
-		{
-			numeroMinimo = numeroIngresado;
-			banderaDelPrimeroMin = "no";
-
+			numMax = numIngresado;
+			numMin = numIngresado;
+			bandera = 1;
 		}
 
+		if(numIngresado>numMax) //bandera solo sera vdd 1 vez
+		{
+			numMax = numIngresado;
+		}
+		if(numIngresado<numMi)
+		{
+			numMin = numIngresado;
+		}
+
+		if(numIngresado < 0)
+		{
+			if(numIngresado>mayorNega)
+			{
+				mayorNega = numIngresado;
+			}
+		}
+		if(numIngresado%2 == 0)
+		{
+			if(numIngresado <= menorPar)
+			{
+				menorPar = numIngresado;
+			}
+		}
+		
 		respuesta = prompt("Desea continuar?");
 	}
 
-	
-	document.getElementById("txtIdMaximo").value=numeroMaximo;
-	document.getElementById("txtIdMinimo").value=numeroMinimo;
+	document.getElementById("txtIdMaximo").value=numMax;
+	document.getElementById("txtIdMinimo").value=numMin;
+	alert("El menor de los pares es: "+menorPar+ " y el mayor de los negativos es: " +mayorNega);
 
 
 }//FIN DE LA FUNCIÓN

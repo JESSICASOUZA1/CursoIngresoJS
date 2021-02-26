@@ -1,4 +1,195 @@
 /*
+da silva de souza, jessica
+A-ingrese nombre , sexo , edad (validar que si es mujer debe ser adolescente 
+y si el hombre debe ser niño), altura (validar), temperatura corporal
+
+B- necesitamos saber: el nombre y el sexo de la persona mas alta , 
+de las mujeres el nombre de la mas joven ,--de los hombre el nombre del mas bajito ,solo si los hay.
+
+C - 10 el promedio de edad entre los hombre ,el promedio de edad entre las mujeres, la cantidad de personas que miden mas de 1,60 metros, 
+y el porcentaje de mujeres sobre el total de personas de mas de 1,60 mts.
+
+ */
+function mostrar()
+{
+	//A
+    var i;
+	var nombre;
+	var sexo;
+	var edad;
+	var altura;
+	var tempCorporal;
+
+	//B
+	var nombreMasAlto;
+	var sexoMasAlto;
+	var bandera = 0;
+	var masAlto;
+	var edadMin;
+	var nombreMasJoven;
+	var nombreMasBajito;
+	var masBajo;
+	var banderaExisteM = 0;	
+	var banderaExisteF = 0;	
+
+	//C
+    var contF = 0;
+	var contM = 0;
+	var promF = 0;
+	var promM = 0;
+	var acumuF = 0;
+	var acumuM = 0;
+	var contPers16 = 0;
+	var contF16 = 0;
+	var porcentajeF = 0;
+
+
+
+	for(i=0; i<5; i++)
+	{
+
+		nombre = prompt("Ingrese nombre");
+		sexo = prompt("Ingrese sexo (M O F)");
+    
+    while(!(sexo == "M" || sexo =="m" || sexo == "F" || sexo =="f"))
+	{
+		sexo = prompt("Error, Ingrese sexo valido (M O F)");
+	}
+
+	edad = parseInt(prompt("Ingrese edad"));
+	while(edad<1 || edad>120)
+	{
+		edad = parseInt(prompt("Error, Ingrese edad valida"));
+	}
+
+	switch(sexo)
+	{
+		case "F":
+		case "f":
+			while(edad<13 || edad>18)
+			{
+				edad = parseInt(prompt("Error, la mujer debe ser adolescente."));
+			}
+			break;
+
+        case "M":
+		case "m":
+			while(edad>12)
+			{
+				edad = parseInt(prompt("Error,el hombre debe ser niño."));
+			}
+			break;
+	}
+
+    altura = parseFloat(prompt("Ingrese altura"));
+	while(altura<0.5 || altura>3)
+	{
+		altura = parseFloat(prompt("Error, Ingrese altura valida"));
+	}
+
+	tempCorporal = parseFloat(prompt("Ingrese temperatura corporal"))
+	while(tempCorporal<16 || tempCorporal>40)
+	{
+		tempCorporal = parseFloat(prompt("Error,Ingrese temperatura corporal valida"))
+	}
+    
+	if(bandera == 0)
+	{
+		masAlto = altura;
+		nombreMasAlto = nombre;
+		sexoMasAlto = sexo;
+		bandera = 1;
+	}
+
+	if(altura>masAlto)
+	{
+		masAlto = altura;
+		nombreMasAlto = nombre;
+		sexoMasAlto = sexo;
+	}
+////////////////////////////////////////////////////////////
+	switch(sexo)
+	{
+	case "F":
+	case "f":
+		if(banderaExisteF == 0)
+		{
+			edadMin = edad;
+			nombreMasJoven = nombre;			
+		}
+		banderaExisteF = 1;
+		contF++;
+		acumuF = acumuF + edad;  //C
+		if(edad<edadMin)
+		{
+		edadMin = edad;
+		nombreMasJoven = nombre;
+	    }		
+		break;
+
+	case "M":
+	case "m":
+		if(banderaExisteM == 0)
+		{
+			nombreMasBajito = nombre;
+			masBajo = altura;			
+		}
+		banderaExisteM = 1;	
+		contM++;   //C
+		acumuM = acumuM + edad;  //C
+		if(altura<masBajo)
+		{
+		nombreMasBajito = nombre;
+	    masBajo = altura;
+	    }	
+	    break;
+    }
+
+	if(altura>1.6)
+	{
+		contPers16++;
+		if(sexo == "F" || sexo == "f")
+		{
+			contF16++;
+		}
+	}
+
+///////////////////////////////////////////////////////////////////	
+}
+    promF = acumuF/contF;
+	promM = acumuM/contM;
+
+	porcentajeF = (contF16/contF)*100;
+
+	document.write("El nombre de la persona mas alta es: "+nombreMasAlto+ " y el sexo es: "+sexoMasAlto+"<br>");
+
+	if(banderaExisteF == 1)
+	{
+		document.write("El nombre de la mujer mas joven es: "+nombreMasJoven+"<br>");
+		document.write("El promedio de edad de mujeres es: "+promF+" años<br>");
+	}
+	else
+	{
+		document.write("No existe mujer"+"<br>");
+	}
+
+	if(banderaExisteM == 1)
+	{
+		document.write("El nombre del hombre mas bajo es: "+nombreMasBajito+"<br>");
+		document.write("El promedio de edad de hombres es: "+promM+" años<br>");
+
+	}
+	else
+	{
+		document.write("No existe hombre mas bajito"+"<br>");
+	}
+
+	document.write("La cantidad de personas que miden mas de 1,60 metros es "+contPers16+"<br>");
+	document.write("El porcentaje de mujeres que miden mas de 1,60 metros es de "+contF16+"%<br>");
+
+}//FIN DE LA FUNCIÓN
+
+/*
 Al presionar el botón pedir  números  
 hasta que el usuario quiera, mostrar:
 1-Suma de los negativos. acumulador +1
@@ -9,9 +200,7 @@ hasta que el usuario quiera, mostrar:
 6-Cantidad de números pares.
 7-Promedio de positivos.
 8-Promedios de negativos.
-9-Diferencia entre positivos y negativos, (positvos-negativos). */
-function mostrar()
-{
+9-Diferencia entre positivos y negativos, (positvos-negativos).
 
 	//declarar contadores y variables 
 	var respuesta;
@@ -97,8 +286,8 @@ function mostrar()
 
     //CantNumerosPares = numeroIngresado % 2;
 
+*/
 
-}//FIN DE LA FUNCIÓN
 
 
 //usar isNaN para verificar se é um numero
