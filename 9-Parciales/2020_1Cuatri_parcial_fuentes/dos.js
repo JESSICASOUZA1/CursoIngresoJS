@@ -124,7 +124,7 @@ else
 //F) segunda parte
 if(acPrecioAr>acPrecioCem && acPrecioAr>acPrecioCal)
 {
- masCaro = "Arena";
+ masCaro = "Arena";-
 }
 else if(acPrecioCal>acPrecioAr && acPrecioCal>acPrecioCem)
 {
