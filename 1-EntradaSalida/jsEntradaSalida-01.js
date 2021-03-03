@@ -1,212 +1,211 @@
-/* 1
+/*
+ 27/2/2021 - aula sabado
 
-Da silva de souza, jessica - Div E
+1. El alumno deberá ingresar:
+Nombre del alumno
+Carrera (Programación, Psicología, Diseño gráfico)
+Estado de la carrera: en curso-abandono-finalizado
+Sexo (femenino-masculino-nobinario)
+Edad (18 o más)
+Nota (entre 1 y 10)
+2. Se desconoce la cantidad de alumnos que se ingresaran.
+3. Se deberán validar los casos resaltados en negrita.
+4. El programa deberá informar a través del documento html:
+A. Cantidad total de alumnos de cada carrera.
+B. Cantidad total de mujeres que cursan la carrera de programación
+C. Cantidad de alumnos no binarios.
+D. Promedio de notas de los alumnos finalizantes.
+E. Nombre, sexo y edad del alumno mas viejo en la carrera de psicología.
+F. Nombre, nota y estado de la carrera del mejor alumno no binario que estudia psicología.)
+G. ¿Cuál es la carrera que tiene más alumnos?
 
-Realizar el algoritmo que permita ingresar 5 paises:
-el continente (validar entre america , asia , europa ,africa y oceania) 
-el nombre del país, 
-cantidad de habitantes en millones entre 1 y 7000 (validar)
-el nivel de pobresa entre (pobre, rico , muy rico) en europa no hay paises pobre(validar)   
-la temperaruta mínima que se registra en su territorio(entre -50 y 50)  
-a)La cantidad de temperaturas pares.
-b)la cantidad de temperaturas impares de europa
-c)El nombre del pais con menos habitantes
-d)la cantidad de paises que superan los 40 grados.
-e)la cantidad de paises de america que tienen menos de 0 grados .
-
-f)el promedio de habitantes entre los paises ingresados .
-g)el promedio de habitantes entre los paises que superan los 40 grados        
-H) la temperatura mínima ingresada, y nombre del pais que registro esa temperatura. 
-i) que continente tiene mas habitantes.
 */
 function mostrar()
 {
- 
-	var continente;
-	var nombrePais;
-	var habitantes = 0;
 
-	var temperaturaMin = -50;
-	var contTempPares = 0;
-	var contTempImpares = 0;
-	var nPaisMenosHab;
-	var menosHab = 0;
+	var nombre;
+	var carrera;
+	var estadoCarrera;
+	var sexo;
+	var edad = 0;
+	var nota = 0;
+	var respuesta = "si";
+
+    //A
+	var contCarreraProg = 0;
+	var contCarreraPsico = 0;
+	var contCarreraGraf = 0;
+	var cantidadCarreraTotal = 0;
+
+	//B
+	var contSexoNoB = 0;      //C
+	var cantidadFemProg = 0;
+
+	//D
+	var contEstadoCarreraFinalizado = 0;
+	var acumuladorNotaFina = 0;
+
+    //E
+	var edadMasViejo;
+	var nombreMasViejo;
+	var sexoMasViejo;
 	var bandera = 0;
 
-	var contPaisesCalidos = 0;
-	var contPaisesAmericanosFrios = 0;
-	var acumuladorPaisesCalidos = 0;
-	var promedioHabTotal = 0;                                             
-    var contPaisesTotal = 0;
-	var acumuladorTotal = 0;
-	var promedioHabPaisesCalidos = 0;    
-	
-	var acumHabAmerica = 0; //i)
-	var acumHabAsia = 0;
-	var acumHabEuropa = 0;
-	var acumHabAfrica = 0;
-	var acumHabOceania = 0;
-    var masHabitantes;
-	
-	var nPaisTempMasBaja;
-	var temperaturaMasBaja;
+	//F
+	var nombreBi;
+	var notaMasAltaBi;
+	var estadoCarreraBi;
+	var banderaBi = 0;
+	//G
+	var CarreraMasTieneAlumnos = 0;
 
-	var i;
 
- for (i=0; i<5; i++)
- {
-	continente = prompt("Ingrese continente (america , asia , europa ,africa y oceania)");
-	while(!(continente == "america" || continente == "asia" || continente =="europa" || continente =="africa"|| continente=="oceania"))
+	while(respuesta == "si")
     {
-		continente = prompt("Error, Ingrese continente valido (america , asia , europa ,africa y oceania)");
-    }
- 
-	nombrePais = prompt("Ingrese nombre del pais");
+	    nombre = prompt("Ingrese nombre");
+		while(isNaN(nombre) == false)
+		{
+			nombre = prompt("Error, ingrese nombre valido.");
+		}
 
-	habitantes = parseInt(prompt("Ingrese la cantidad de habitantes en millones (entre 1 y 7000)"));
-	while(habitantes<1 || habitantes>7000)
+		carrera = prompt("Ingrese carrera (Programación, Psicología o Diseño grafico)");
+		while(!(carrera =="programacion" || carrera =="psicologia" || carrera == "diseño grafico"))
+		{
+			carrera = prompt("Error, Ingrese carrera valida (Programación, Psicología o Diseño grafico)");
+		}
+		
+		estadoCarrera = prompt("Ingrese estado de la carrera (en curso, abandono, o finalizado)");
+		while(!(estadoCarrera == "en curso" || estadoCarrera =="abandono" || estadoCarrera =="finalizado"))
+		{
+			estadoCarrera = prompt("Error, Ingrese estado de carrera valida (en curso, abandono, o finalizado)");
+		}
+
+		sexo = prompt("Ingrese sexo (Femenino, masculino o nobinario)");
+		while(!(sexo =="femenino" || sexo =="Femenino" || sexo =="masculino" || sexo =="Masculino" || sexo =="nobinario" || sexo =="Nobinario"))
+		{
+			sexo = prompt("Error, Ingrese sexo valido (femenino, masculino o nobinario)");
+		}
+
+		edad = parseInt(prompt("Ingrese Edad (mayor a 18)"));
+		while(isNaN(edad) == true || edad<18)
+		{
+			edad = parseInt(prompt("Error, Ingrese Edad valida (solo mayores de 18)"));
+		}
+
+		nota = parseInt(prompt("Ingrese nota (1 a 10)"));
+		while(isNaN(nota) == true || nota<1 || nota>10)
+		{
+			nota = parseInt(prompt("Error, Ingrese nota (entre 1 a 10)"));
+		}
+        
+		switch(carrera)
+		{
+			case "programacion":
+				contCarreraProg++;
+				if(sexo == "femenino" || sexo =="Femenino")
+				{
+					cantidadFemProg++;
+				}
+				break;
+
+			case "psicologia":
+				contCarreraPsico++;
+				if(edad>edadMasViejo || bandera == 0)
+				{
+				edadMasViejo = edad;
+				nombreMasViejo = nombre;
+				sexoMasViejo = sexo;
+				bandera = 1;
+			    }
+
+				if(sexo == "nobinario" || sexo =="Nobinario") //F
+				{
+					if(banderaBi == 0)
+					{
+						nombreBi = nombre;
+						notaMasAltaBi = nota;
+						estadoCarreraBi = estadoCarrera;
+						banderaBi = 1;
+					}
+					if(nota>notaMasAltaBi)
+					{
+						nombreBi = nombre;
+						notaMasAltaBi = nota;
+						estadoCarreraBi = estadoCarrera;
+					}
+					
+
+				}
+
+				break;
+
+			case "diseño grafico":
+				contCarreraGraf++;
+				break;
+		}
+    if(sexo == "nobinario" || sexo =="Nobinario")
 	{
-		habitantes = parseInt(prompt("Error, Ingrese cantidad de habitantes valido (entre 1 y 7000)"));
-	}
-    
-	nivelPobresa = prompt("Ingrese el nivel de pobresa (pobre, rico , muy rico)");
-	while(!(nivelPobresa == "pobre" || nivelPobresa == "rico" || nivelPobresa == "muy rico"))
-	{
-	  nivelPobresa = prompt("Error, Ingrese nivel de pobresa valido (pobre, rico , muy rico)");
-	}
-	if(continente == "europa")
-	{
-	  while(nivelPobresa == "pobre")
-	  {
-		nivelPobresa = prompt("Error, en Europa no hay paises pobres. Ingrese nivel de pobresa valido (rico , muy rico)");
-	  }
+		contSexoNoB++;
 	}
 
-	temperaturaMin = parseInt(prompt("Ingrese temperatura"));
-	while(temperaturaMin<-50 || temperaturaMin>50)
+	if(estadoCarrera == "finalizado") //D
 	{
-		temperaturaMin = parseInt(prompt("Error,Ingrese temperatura valida"));
+		contEstadoCarreraFinalizado++;
+		acumuladorNotaFina = acumuladorNotaFina + nota;
 	}
-    
-	contPaisesTotal++;         //f
-	acumuladorTotal = acumuladorTotal + habitantes; 
-	
-	switch(continente)
-	{
-	  case "america":
-		acumHabAmerica = acumHabAmerica + habitantes;
-		break;
-  
-	  case "asia":
-		acumHabAsia = acumHabAsia + habitantes;
-		break;
-  
-	  case "europa":
-		acumHabEuropa = acumHabEuropa + habitantes;
-		break;
-  
-	  case "africa":
-		acumHabAfrica = acumHabAfrica + habitantes;
-		break;
-  
-	  case "oceania":
-		acumHabOceania = acumHabOceania + habitantes;
-		break;
+        respuesta = prompt("Desea ingresar otro alumno?");
+
 	}
 
-	if(temperaturaMin%2==0) //a
+	promedioNotaFinalizado = acumuladorNotaFina/contEstadoCarreraFinalizado; //D
+
+	cantidadCarreraTotal = contCarreraProg + contCarreraPsico + contCarreraGraf; //A
+
+	if(contCarreraProg>contCarreraPsico && contCarreraProg>contCarreraGraf)
 	{
-		contTempPares++;
+		CarreraMasTieneAlumnos = "programacion";
+	}
+	else if(contCarreraPsico>contCarreraProg && contCarreraPsico>contCarreraGraf)
+	{
+		CarreraMasTieneAlumnos  = "psicologia";
 	}
 	else
-   {
-	if(continente == "europa") //b
 	{
-		contTempImpares++;
-	}
-    }
-
-    if(bandera == 0)
-	{
-		nPaisMenosHab = nombrePais;
-	    menosHab = habitantes;
-		nPaisTempMasBaja = nombrePais;
-		temperaturaMasBaja = temperaturaMin;
-		bandera = 1;
-	}
-	if(habitantes<menosHab) //c
-	{
-		nPaisMenosHab = nombrePais;
-	    menosHab = habitantes;
+		CarreraMasTieneAlumnos = "diseño gráfico";
 	}
 
-	if(temperaturaMin<temperaturaMasBaja)
-	{
-		nPaisTempMasBaja = nombrePais;
-		temperaturaMasBaja = temperaturaMin;
+	document.write("Cantidad total de alumnos de cada carrera es: programacion: "+contCarreraProg+" y psicologia es: "+contCarreraPsico+" y de diseño gráfico es: "+contCarreraGraf+"<br>");
+	document.write("Cantidad total de mujeres que cursan la carrera de programación es: "+cantidadFemProg+"<br>");
+	document.write("Cantidad de alumnos no binarios es: "+contSexoNoB+"<br>");
 
+	if(contEstadoCarreraFinalizado > 0)
+	{
+		document.write("Promedio de notas de los alumnos finalizantes es: "+promedioNotaFinalizado+"<br>");
+	}
+	else
+	{
+		document.write("No hay alumnos finalizantes<br>");
 	}
 
-	if(temperaturaMin > 40)
+	if(bandera == 1)
 	{
-	  contPaisesCalidos++; //d)
-	  acumuladorPaisesCalidos = acumuladorPaisesCalidos + habitantes;
+		document.write("Nombre, sexo y edad del alumno mas viejo en la carrera de psicología es: nombre: "+nombreMasViejo+ " y el sexo es: "+sexoMasViejo+ " y la edad es: "+edadMasViejo+"<br>");
+
 	}
-	else if (temperaturaMin < 0)
+	else
 	{
-	  if(continente == "america")
-	  {
-		contPaisesAmericanosFrios++; //e)
-	  }
+		document.write("No hay alumnos estudiando psicologia<br>");
 	}
 
+    if(banderaBi == 1)
+	{
+		document.write("Nombre, nota y estado de la carrera del mejor alumno no binario que estudia psicología es: nombre: "+nombreBi+ " y la nota es: "+notaMasAltaBi+ " y el estado de la carrera es: "+estadoCarreraBi+"<br>");
+	}
+	else
+	{
+		document.write("No hay alumnos noBinario estudiando psicologia<br>");
+	}
 
- }
-
- promedioHabPaisesCalidos = acumuladorPaisesCalidos/contPaisesCalidos;
- promedioHabTotal = acumuladorTotal/contPaisesTotal;
-
- if(acumHabAmerica > acumHabEuropa && acumHabAmerica > acumHabAsia && acumHabAmerica > acumHabAfrica && acumHabAmerica > acumHabOceania)
-{
-  masHabitantes = "America";
-}
-else if(acumHabEuropa > acumHabAmerica && acumHabEuropa > acumHabAsia && acumHabEuropa > acumHabAfrica && acumHabEuropa > acumHabOceania)
-{
-  masHabitantes = "Europa";
-}
-else if(acumHabAsia > acumHabAmerica && acumHabAsia > acumHabEuropa && acumHabAsia > acumHabAfrica && acumHabAsia > acumHabOceania)
-{
-  masHabitantes = "Asia";
-}
-else if(acumHabAfrica > acumHabAmerica && acumHabAfrica > acumHabEuropa && acumHabAfrica > acumHabAsia && acumHabAfrica > acumHabOceania)
-{
-  masHabitantes = "Africa";
-}
-else
-{
-  masHabitantes = "Oceania";
-}
-
-document.write("La cantidad de temperaturas pares es: "+contTempPares+"<br>");
-document.write("La cantidad de temperaturas impares de europa es: "+contTempImpares+"<br>");
-document.write("El nombre del pais con menos habitantes es: "+nPaisMenosHab+"<br>");
-document.write("la cantidad de paises que superan los 40 grados es: "+contPaisesCalidos+"<br>");
-document.write("La cantidad de paises de america que tienen menos de 0 grados es: "+contPaisesAmericanosFrios+"<br>");
-document.write("El promedio de habitantes entre los paises ingresados es: "+promedioHabTotal+" millones<br>");
-document.write("El promedio de habitantes entre los paises que superan los 40 grados es: "+promedioHabPaisesCalidos+" millones<br>");
-document.write("La temperatura mínima ingresadaes es: "+temperaturaMasBaja+" grados, y el nombre del pais que registro esa temperatura. es: "+nPaisTempMasBaja+"<br>");
-document.write("El continente que tiene mas habitantes es: "+mashabitantes+"<br>");
+	document.write("La carrera que tiene mas alumnos es: "+CarreraMasTieneAlumnos+"<br>");
 
 }
-
-
-
-
-
-
-
-
-
-
-
-

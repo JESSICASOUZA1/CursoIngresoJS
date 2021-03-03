@@ -1,264 +1,219 @@
-/* 2
+/* 27/2/2021 - aula sabado
 
-Da silva de souza, jessica - Div E
+da silva de souza, jessica
 
-Para un censo municipal debemos cargar los datos de TODAS las mascotas de nuestra veterinaria
-necesitan saber si es un gato o un perrro u "otra cosa",(solo hay esos tres tipos)
-el tipo de pelaje (corto, largo , sin pelo),
-la edad de la mascota (edad validada);
-el nombre (una palabra) 
-la raza  (una palabra) 
-el peso (peso validado) 
-el estadoClinico (enfermo,internado o adopcion)
-la temperaruta corporal y nos piden informar solo si existe
+2- "super chino" Se pide el ingreso de mercadería de un supermercado , hasta que el usuario quiera,se pide :
+tipo(limpieza , comestible , otros)solo estos tres tipos
+nombre del producto
+importe del producto (no mayor a 1000 pesos)
+procedencia(importado, nacional, elaborado)
+Peso (no mayor a 30 kilos)
 
-a)El perro mas pesado
-b)El porcentaje de enfermos sobre el total de mascotas
-c)El nombre de la ultima mascota de tipo "otra cosa"
-d)El animal sin pelo con menor temperatura corporal
-e)Que tipo de mascota(gato o un perrro u "otra cosa") que tiene el mayor promedio de temperatura corporal
-f)Sumando gatos y perros que porcentaje del total de mascotas son?
-g)Que estado clinico tiene la menor cantidad de mascotas       
-H)Cual es el promedio de kilos de peso de tomando todas las mascotas 
-i)El nombre y raza del gato sin pelos mas liviano
+informar SOLO SI HAY 
+a)el NOMBRE del mas pesado de los comestibles
+b)el NOMBRE del  mas caro de todos los productos
+c)el NOMBRE del  mas barato de los elaborados
+d)el tipo de mercadería  que mas aparece
+e)el porcentaje de productos elaborados por sobre el total       
+f)el promedio de pesos por cada tipo ingresado                   
+
+
 */
 function mostrar()
 {
-	var tipoAnimal;
-	var tipoPelaje;
-	var edad;
-	var nombre;
-	var raza;
-	var peso;
-	var estadoClinico;
-	var tempCorporal;
-	var respuesta = "si";
-	var bandera=0;
+	var tipo;
+	var nombreProducto;
+	var precio = 0;
+	var procedencia;
+	var peso = 1;
+	var bandera = 0;
 
-	var mayorPeso;
-	var nombreMasPesado;
+	var nombreMasPesadoC;  //A
+	var masPesadoC;
 
-	var ultimoNombreOtraCosa=1;
+	var nombreMasCaroTodos;   //B
+	var precioMasCaro = 0;
 
-	var banderaSinPelo=0;
-	var nombreSinPeloMenorTemp;
-	var sinPeloMenorTemp;
+	var nombreMasBaratoElabo;   //C
+	var precioMasBaratoElabo;
+	var banderaElaboradoExiste = 0;
 
-	var contPerro=0;
-	var contGato=0;
-	var contOtraCosa=0;
-	var cantidadTotal=0;
-	var cantidadPerrosGatos=0;
+	var contLimp = 0;           //(tipo)
+	var contComest = 0;
+	var contOtros = 0;
+	var acuPesoOtros;
+	var acuPesoLimp = 0;
+	var acuPesoComest = 0;
+	var banderaComest = 0;
+	//D
+	var tipoMasAparece;
 
-	var acumPerroTemp=0;
-	var acumGatoTemp=0;
-	var acumOtraCosaTemp=0;
+	//E
+	var contImport = 0;                      //(procedencia)
+	var contNacional = 0;
+	var contElaborado = 0;
+	var cantiProcedenciaTotal = 0;
+	var porcentajeElabo = 0;
 
-	var promedioTempPerro=0;
-	var promedioTempGato=0;
-	var promedioTempOtraCosa=0;
-	var tipoMayorPromedio;
+	//F
+	var promePesoComest = 0; 
+	var promePesoLimp = 0;
+    var promePesoOtros = 0;
 
-	var contEnfermo=0;
-	var contInternado=0;
-	var contAdopcion=0;
 
-	var acumPeso=0;
-
-	var estadoClinicoMenorCantidad;
-	var porcentajePerroGato=0;
-	var porcentajeEnfermos=0;
-
-	var promedioPeso=0;
-
-	var banderaGatoSinPelos=0;
-	var nombreGatoSinPelosMasLiviano;
-	var pesoGatoSinPelosMasLiviano;
-	var razaGatoSinPelosMasLiviano;
+    var respuesta = "si";
 
 	while(respuesta == "si")
-    {
-		tipoAnimal = prompt("Ingrese tipo animal (gato , perro , otra cosa)");
-		while(!(tipoAnimal =="gato" || tipoAnimal =="perro" || tipoAnimal == "otra cosa"))
+	{
+
+		tipo = prompt("Ingrese tipo (limpieza ,comestible , otros)");
+		while(!(tipo == "limpieza" || tipo =="comestible" || tipo == "otros"))
 		{
-			tipoAnimal = prompt("Error, Ingrese tipo animal valido (gato , perro , otra cosa)");
+			tipo = prompt("Error, Ingrese tipo valido (limpieza ,comestible , otros)");
 		}
 
-		tipoPelaje = prompt("Ingrese tipo pelajo (corto, largo o sin pelos)")
-		while(!(tipoPelaje == "corto" || tipoPelaje == "largo" || tipoPelaje =="sin pelo"))
+		nombreProducto = prompt("Ingrese nombre");
+		while(isNaN(nombreProducto) == false) // == false so entra no while se for ingresado numeros(error).senao nao entra.
 		{
-			tipoPelaje = prompt("Error, Ingrese tipo pelajo valido (corto ,largo , sin pelo)");
-
+			nombreProducto = prompt("Error, ingrese nombre valido.");
 		}
-	 	
-		edad = parseInt(prompt("Ingrese edad"));
-		while(edad<1 || edad>90)
+
+		precio = parseInt(prompt("Ingrese precio (no mayor a $1000)"));
+		while(isNaN(precio) == true || precio<1 || precio>1000) //queremos um numero por isso ta true
+		{
+			precio = parseInt(prompt("Error, Ingrese precio valido (no mayor a $1000)"));
+		}
+
+		procedencia = prompt("Ingrese procedencia (importado, nacional, elaborado)");
+		while(!(procedencia == "importado" || procedencia == "nacional" || procedencia == "elaborado"))
+		{
+			procedencia = prompt("Error, Ingrese procedencia valida (importado, nacional, elaborado)");
+		}
+
+		peso = parseInt(prompt("Ingrese peso (no mayor a 30kg)"));
+		while(isNaN(peso) == true || peso<1 || peso>30)
+		{
+			peso = parseInt(prompt("Error, Ingrese peso valido(no mayor a 30kg)"));
+		}
+        
+		if(bandera == 0) //B
         {
-	        edad = parseInt(prompt("Error, Ingrese edad valida"));
-        }
-
-		nombre = prompt("Ingrese nombre del animal");
-		while(!isNaN(nombre))
-		{
-			nombre = prompt("Ingrese un nombre valido");
-		}
-
-		raza = prompt("Ingrese raza del animal");
-		while(!isNaN(raza))
-		{
-			raza = prompt("Ingrese una raza valida");
-		}
-
-		peso = parseFloat(prompt("Ingrese peso"));
-		while(peso<0.1 || peso>50)
-		{
-			peso = parseFloat(prompt("Error, Ingrese peso valido"));
-		}
-
-		estadoClinico = prompt("Ingrese estado clinico (enfermo,internado o adopcion)");
-		while(!(estadoClinico == "enfermo" || estadoClinico == "internado" || estadoClinico == "adopcion"))
-		{
-			estadoClinico = prompt("Error, Ingrese estado clinico valido (enfermo,internado o adopcion)");
-		}
-
-		tempCorporal = parseFloat(prompt("Ingrese temperatura corporal"));
-		while(tempCorporal<25 || tempCorporal>45)
-		{
-			tempCorporal = parseFloat(prompt("Error, Ingrese temperatura corporal valida"));
-		}
-
-		switch(tipoAnimal)
-		{
-			case "perro":
-				contPerro++;
-				acumPerroTemp = acumPerroTemp + tempCorporal;
-				break;
-
-			case "gato":
-				contGato++;
-				acumGatoTemp = acumGatoTemp + tempCorporal;
-				if(tipoPelaje == "sin pelo")
-				{
-				if(banderaGatoSinPelos == 0)
-				{
-					nombreGatoSinPelosMasLiviano = nombre;
-					pesoGatoSinPelosMasLiviano = peso;
-					razaGatoSinPelosMasLiviano = raza;
-					banderaGatoSinPelos = 1;
-				}
-				if(peso<pesoGatoSinPelosMasLiviano)
-				{
-					nombreGatoSinPelosMasLiviano = nombre;
-					pesoGatoSinPelosMasLiviano = peso;
-					razaGatoSinPelosMasLiviano = raza;
-				}
-			    }
-				break;
-
-			case "otra cosa":
-				contOtraCosa++;
-				acumOtraCosaTemp = acumOtraCosaTemp + tempCorporal;
-				break;
-		}
-		switch(estadoClinico)
-		{
-			case "enfermo":
-				contEnfermo++;
-				break;
-
-			case "internado":
-				contInternado++;
-				break;
-
-			case "adopcion":
-				contAdopcion++;
-				break;
-		}
-		acumPeso = acumPeso + peso;
-
-		if(bandera == 0)
-		{
-			mayorPeso = peso;
-			nombreMasPesado = nombre;
+	        precioMasCaro = precio;
+	        nombreMasCaroTodos = nombreProducto;
 			bandera = 1;
+
 		}
-		if(peso>mayorPeso)
+        if(precio>precioMasCaro)
 		{
-			mayorPeso = peso;
-			nombreMasPesado = nombre;
+			precioMasCaro = precio;
+	        nombreMasCaroTodos = nombreProducto;
+	    }
+        
+		switch(tipo)
+		{
+			case "comestible":
+				contComest++;
+				acuPesoComest = acuPesoComest + peso;
+
+				if(banderaComest == 0)    //A
+		        {
+				masPesadoC = peso;
+			    nombreMasPesadoC = nombreProducto;
+			    banderaComest = 1;
+		        }
+				if(peso>masPesadoC)
+				{
+					masPesadoC = peso;
+					nombreMasPesadoC = nombreProducto;
+				}
+			break;
+
+			case "limpieza":
+				contLimp++;
+				acuPesoLimp = acuPesoLimp + peso;
+			break;
+
+			case "otros":
+				contOtros++;
+				acuPesoOtros = acuPesoOtros + peso;
+			break;
 		}
 
-		if(tipoAnimal == "otra cosa")
-		{
-			ultimoNombreOtraCosa = nombre;
-		}
+			switch(procedencia)
+		    {
+			case "importado":
+				contImport++;
+			break;
 
-		if(tipoPelaje == "sin pelo")
-		{
-			if(banderaSinPelo == 0)
-			{
-				nombreSinPeloMenorTemp = nombre;
-				sinPeloMenorTemp = tempCorporal;
-				banderaSinPelo = 1;
+			case "nacional":
+				contNacional++;
+			break;
+			
+			case "elaborado":
+				contElaborado++;
+				if(banderaElaboradoExiste == 0)
+				{
+				precioMasBaratoElabo = precio;
+				nombreMasBaratoElabo = nombreProducto;
+				banderaElaboradoExiste = 1;
+				}
+				if(precio<precioMasBaratoElabo)
+				{
+					precioMasBaratoElabo = precio;
+				    nombreMasBaratoElabo = nombreProducto;
+				}
+			break;
 			}
-			if(tempCorporal<sinPeloMenorTemp)
-			{
-				nombreSinPeloMenorTemp = nombre;
-				sinPeloMenorTemp = tempCorporal;
-			}
-		}
-    
-        respuesta = prompt("Ingresar otro animal?");
-    }
 
+        respuesta = prompt("Desea ingresar otro producto?");
 
-	promedioTempPerro = acumPerroTemp/contPerro;
-	promedioTempGato = acumGatoTemp/contGato;
-	promedioTempOtraCosa = acumOtraCosaTemp/contOtraCosa;
-
-	if(promedioTempPerro > promedioTempGato && promedioTempPerro > promedioTempOtraCosa)
-	{
-		tipoMayorPromedio = "perro";
-	}
-	else if(promedioTempGato > promedioTempPerro && promedioTempGato > promedioTempOtraCosa)
-	{
-		tipoMayorPromedio = "gato";
-	}
-	else
-	{
-		tipoMayorPromedio = "otra cosa";
 	}
 
-	cantidadPerrosGatos = contPerro+contGato;
-	cantidadTotal = contPerro+contGato+contOtraCosa;
-
-	porcentajePerroGato = (cantidadPerrosGatos * 100) / cantidadTotal;
-	porcentajeEnfermos = (contEnfermo * 100) / cantidadTotal;
-
-	promedioPeso = acumPeso / cantidadTotal;
-
-	if(contEnfermo < contInternado && contEnfermo < contAdopcion)
+	// E
+	cantiProcedenciaTotal = contImport + contNacional + contElaborado;
+	if(contComest > contLimp && contComest > contOtros)       //D
 	{
-		estadoClinicoMenorCantidad = "enfermo";
+		tipoMasAparece = "comestible";
 	}
-	else if(contInternado < contEnfermo && contInternado < contAdopcion)
+	else if(contLimp > contComest && contLimp > contOtros)
 	{
-		estadoClinicoMenorCantidad = "internado";
+		tipoMasAparece = "limpieza";
 	}
 	else 
 	{
-		estadoClinicoMenorCantidad = "adopcion";
+		tipoMasAparece = "otros";
 	}
+	porcentajeElabo = (contElaborado * 100) / cantiProcedenciaTotal;
+	//F
+	promePesoComest = acuPesoComest/contComest;
+	promePesoLimp = acuPesoLimp/contLimp;
+	promePesoOtros = acuPesoOtros/contOtros;
+    
+	if(contComest > 0)
+	{
+		document.write("El NOMBRE del mas pesado de los comestibles es: "+nombreMasPesadoC+"<br>");
+	}
+	if(contElaborado>0)
+	{
+		document.write("El NOMBRE del  mas barato de los elaborados es: "+nombreMasBaratoElabo+"<br>");
+	}
+	document.write("El porcentaje de productos elaborados por sobre el total es: "+porcentajeElabo+"%<br>");
 
-	document.write("El perro mas pesado es: "+nombreMasPesado+"<br>");
-	document.write("El porcentaje de enfermos sobre el total de mascotas es: "+porcentajeEnfermos+"%<br>");
-	document.write("El nombre de la ultima mascota de tipo otra cosa es: "+ultimoNombreOtraCosa+"<br>");
-	document.write("El animal sin pelo con menor temperatura corporal es: "+nombreSinPeloMenorTemp+"<br>");
-	document.write("El tipo de mascota(gato o un perro o otra cosa) que tiene el mayor promedio de temperatura corporal es: "+tipoMayorPromedio+"<br>");
-	document.write("El porcentaje de gatos y perros es del total de mascotas es: "+porcentajePerroGato+"%<br>");
-	document.write("El estado clinico de menor cantidad de mascotas es: " +estadoClinicoMenorCantidad+"<br>");
-	document.write("El promedio de kg de todas las mascotas es: "+promedioPeso+"kg<br>");
-	document.write("El nombre del gato sin pelos mas liviano es: "+nombreGatoSinPelosMasLiviano+ " y su raza es: "+razaGatoSinPelosMasLiviano+"<br>");
+	document.write("El NOMBRE del mas caro de todos los productos es: "+nombreMasCaroTodos+"<br>");
+	
+	document.write("El tipo de mercadería que mas aparece es: "+tipoMasAparece+"<br>");
 
+	if(contComest > 0 )
+	{
+		document.write("El promedio de pesos del tipo comestible es: "+promePesoComest+"kg<br>");
+	}
+	if(contLimp > 0)
+	{
+		document.write("El promedio de pesos del tipo limpieza es: "+promePesoLimp+"kg<br>");
+	}
+	if(contOtros > 0 )
+	{
+		document.write("El promedio de pesos del tipo otros es: "+promePesoOtros+"kg<br>");
+	}
+	
 }
-
